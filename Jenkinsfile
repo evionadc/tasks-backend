@@ -52,6 +52,13 @@ pipeline {
                 }
             }
         }
+        stage ('Functional Tests'){
+           steps{
+                dir('frontend'){
+                bat 'mvn test'
+                } 
+            }
+        }
     }
 }
 
