@@ -37,8 +37,19 @@ pipeline {
         }
         stage ('Api Test'){
             steps{
+                dir('api-test'){
                 git 'https://github.com/evionadc/tasks-api-tests'
                 bat 'mvn test'
+                }
+            }
+        }
+        stage('Deploy FrontEnd'){
+            steps{
+                dir('frontend'){
+                git 'https://github.com/evionadc/tasks-frontend'
+                bat 'mvn clean package -DskipTests=true'
+                deploy adapters: [tomcat8(credentialsId: 'TomCat', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks', war: 'target/tasks.war'
+                }
             }
         }
     }
