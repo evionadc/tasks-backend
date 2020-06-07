@@ -37,7 +37,8 @@ pipeline {
         }
         stage ('Api Test'){
             steps{
-                    bat 'echo Á definir!'
+                git 'https://github.com/evionadc/tasks-api-tests'
+                bat 'mvn test'
             }
         }
     }
