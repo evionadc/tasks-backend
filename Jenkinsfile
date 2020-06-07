@@ -37,7 +37,7 @@ pipeline {
         }
         stage ('Api Test'){
             steps{
-
+                    bat 'echo Á definir!'
             }
         }
     }
